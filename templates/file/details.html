@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+
+    <div class="container container-ver2">
+            <div class="page-login box space-50">
+                <div class="row">
+                    <div class="col-md-6 sign-in space-30  {text-transform: capitalize;}">
+                        <h3>Details</h3>
+
+                        <p><strong>Created at: </strong>{{ object.created_at }}</p>
+                        <p><strong>Description: </strong>{{ object.description }}</p>
+                        <p><strong>Upado by:</strong>{{ object.user.username.capitalize }}</p>
+                        <p><strong>Cover: </strong><a href="/media/{{object.cover}}" ><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>Download</a></p>
+                        <p><strong>Link: </strong><a href="/media/{{object.file}}" ><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>Download</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p>
+          
+        
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+{% endblock %}
+
+
+

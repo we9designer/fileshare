@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+    <div class="container container-ver2">
+            <div class="page-login box space-50">
+                <div class="row">
+                    <div class="col-md-6 sign-in space-30">
+                        <h3>sign in</h3>
+                        <p>Hello, welcome to your account.</p>
+                        <form method="POST">
+
+
+                            {% csrf_token %}
+                            {{form.as_p}}
+
+      
+                            <button type="submit" class="link-v1 rt">LOGIN NOW</button>
+                        </form>
+                        <!-- End form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

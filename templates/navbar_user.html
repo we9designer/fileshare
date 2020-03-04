@@ -1,0 +1,38 @@
+<div class="wrappage">
+    <header id="header" class="header-v3">
+        <div id="topbar">
+            <div class="container">
+                <div class="inner-topbar box">
+                    <div class="float-left">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'file_list' %}" title=""><h1>FILE SHARE</h1></a>
+                        {% else %}
+                        <a href="{% url 'index' %}" title=""><h1>FILE SHARE</h1></a>
+                        {% endif %}
+                    </div>
+                    <div class="float-right align-right">
+                        {% if user.is_authenticated %}
+                        <div class="hover-menu">
+                            <a href="#" title="Logged in as: {{ user.username }}">Logged in as: <strong>{{ user.username.capitalize }}</strong></a>
+                        </div>
+                        <div class="hover-menu">
+                            <a href="{% url 'logout' %}" title="">Log Out</a>
+                        </div>
+                        {% else %}
+                        <div class="hover-menu">
+                            <a href="#" title="LOGIN / REGISTER">LOGIN / REGISTER</a>
+                            <i class="fa fa-angle-down"></i>
+                            <ul class="list-menu">
+                                <li><a href="{% url 'login' %}" title="LOGIN">LOGIN</a></li>
+                                <li><a href="{% url 'register' %}" title="REGISTER">REGISTER</a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-top"></div>
+        <div class="header-top"></div>
+    </header>
+</div>
