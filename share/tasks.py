@@ -21,45 +21,6 @@ def delete_old_files():
             file.delete()
     return "completed deleting files at {}".format(timezone.now())
 
-"""
-@periodic_task(run_every=(timedelta(seconds=5)), name='my_first_task')
+@periodic_task(run_every=(timedelta(seconds=50000)), name='my_first_task')
 def my_first_task():
-	print('HELLO!!!!!!!!!!!!!!!!!!!')
-
-
-@shared_task
-def my_second_task():
-    print('second task')
-
-
-@shared_task
-def my_third_task():
-    print('third task')
-
-
-@shared_task
-def add(x, y):
-    return x + y
-
-
-@shared_task
-def mul(x, y):
-    return x * y
-
-
-@shared_task
-def xsum(numbers):
-    return sum(numbers)
-
-
-@shared_task
-def count_file():
-    return File.objects.count()
-
-
-@shared_task
-def rename_files(widget_id, name):
-    w = File.objects.get(id=file_id)
-    w.name = name
-    w.save()
-"""	
+	print('This is test message and celery is works...')

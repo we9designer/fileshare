@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:9.6.5
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=suppersecretpassword
+    ports:
+      - 8080:8080
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  redis:
+    image: "redis:alpine"
+  web:
+    build: .
+    command: bash -c "python /fileshare/manage.py migrate --noinput && python /fileshare/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/fileshare
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+  celery:
+    build: .
+    command: celery -A fileshare worker -l info
+    volumes:
+      - .:/fileshare
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: .
+    command: celery -A fileshare beat -l info
+    volumes:
+      - .:/fileshare
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:

@@ -25,7 +25,7 @@ SECRET_KEY = '6v1w=^tk@i405%9=-ciy9g0t6df*vsxu(cvia_cla&^+6tyaft'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'share',
     'core',
+    'chatapp',
 ]
 
 MIDDLEWARE = [
@@ -75,14 +76,44 @@ WSGI_APPLICATION = 'fileshare.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+# DATABASE_ROUTERS = ['fileshare.routers.DemoRouter']
+# DATABASE_APPS_MAPPING = {'accounts': 'accounts_db', 'share':'share_db'}
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'testdb13',
+        'USER': 'testus13',
+        'PASSWORD': 'testps13',
+        'HOST': 'localhost',
+    }
 }
 
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'testdb12',
+        'USER': 'testus12',
+        'PASSWORD': 'testps12',
+        'HOST': 'localhost',
+    },
+    'share_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'testdb9',
+        'USER': 'testus9',
+        'PASSWORD': 'testps9',
+        'HOST': 'localhost',
+    },
+    'accounts_db': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'testdb11',
+        'USER': 'testus11',
+        'PASSWORD': 'testps11',
+        'HOST': 'localhost',
+    }
+}
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -131,8 +162,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/share/file/list'
-RWGISTER_REDIRECT_URL = '/share/file/list'
-
+REGISTER_REDIRECT_URL = '/share/file/list'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
 # Cellery
@@ -140,15 +171,3 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-"""
-CELERY_BEAT_SCHEDULE = {
-    'second-task':{
-        'task':'share.tasks.my_second_task',
-        'schedule' : 15.0
-    },
-    'third-task':{
-        'task':'share.tasks.my_third_task',
-        'schedule' : 30.0
-    },
-}
-"""

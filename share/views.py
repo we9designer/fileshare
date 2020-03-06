@@ -13,7 +13,6 @@ import datetime
 from django.utils import timezone
 
 
-
 def add_file():
     File.objects.create(expiration_date=timezone.now() + datetime.timedelta(minutes=10080))
 
@@ -32,6 +31,10 @@ class FileList(ListView):
 class FileDetail(DetailView):
     model = File
     template_name = 'file/details.html'
+
+    def get_queryset1(self):
+        self.queryset1 = super(FileList, self).get_queryset1().filter(user=self.request.user)
+        return self.queryset1
 
 class FileCreate(CreateView):
     model = File
@@ -56,3 +59,4 @@ class FileUpdate(UpdateView):
 class FileDelete(DeleteView):
     model = File
     success_url = reverse_lazy('file_list')
+
