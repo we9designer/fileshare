@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import ChatApp
 from .forms import MessageApp
-# from django.contrib.auth.decorators import login_required
 
 def home(request):
 	msg = ChatApp.objects.all()

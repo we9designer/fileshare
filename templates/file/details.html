@@ -11,6 +11,15 @@
                         <p><strong>Upado by:</strong>{{ object.user.username.capitalize }}</p>
                         <p><strong>Cover: </strong><a href="/media/{{object.cover}}" ><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>Download</a></p>
                         <p><strong>Link: </strong><a href="/media/{{object.file}}" ><i class="fa fa-arrow-circle-down" aria-hidden="true"></i>Download</a></p>
+
+
+                        
+                        <form action="." method="post"  class="col-sm-6 col-sm-offset-3">
+                            {%csrf_token%}
+                            {{form}}
+                            
+                            <input class="btn btn-default"  type="submit" value="Send"/>
+                        </form>
                     </div>
                 </div>
             </div>
