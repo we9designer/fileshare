@@ -1,6 +1,6 @@
 wheel
 celery==4.4.1
-Django==3.0.3
+Django==3.0.7
 Pillow==7.0.0
 redis==3.4.1
 psycopg2
